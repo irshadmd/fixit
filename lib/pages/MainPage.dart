@@ -62,7 +62,7 @@ class _MainPageState extends State<MainPage> {
             title: Row(
               children: <Widget>[
                 Container(
-                    width: 50, child: Image.asset("assets/freshodaily.png")),
+                    width: 50, child: Image.asset("assets/splash.jpg")),
                 Container(
                   height: 40,
                   width: 70,

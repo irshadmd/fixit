@@ -15,7 +15,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
   @override
   Widget build(BuildContext context) {
     return SplashScreen(
-      seconds: 4,
+      seconds: 3,
       photoSize: 150,
       image: Image.asset('assets/splash.jpg'),
       navigateAfterSeconds: new WalkThrough(),
