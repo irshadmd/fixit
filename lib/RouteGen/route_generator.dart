@@ -1,3 +1,4 @@
+import 'package:fixit/pages/ForgetPassword.dart';
 import 'package:fixit/pages/LoginOrRegisterPage.dart';
 import 'package:fixit/pages/LoginPage.dart';
 import 'package:fixit/pages/MainPage.dart';
@@ -22,6 +23,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => LoginPage());
       case '/LoginOrRegisterPage':
         return MaterialPageRoute(builder: (_) => LoginOrRegisterPage());
+      case '/ForgetPassword':
+        return MaterialPageRoute(builder: (_) => ForgetPassword());
       case '/SignIn':
         return MaterialPageRoute(builder: (_) => SignIn());
       case '/WalkThrough':

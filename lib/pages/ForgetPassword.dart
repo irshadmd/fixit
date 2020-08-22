@@ -2,20 +2,20 @@ import 'package:fixit/appconfig/app_config.dart' as config;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class LoginOrRegisterPage extends StatefulWidget {
+class ForgetPassword extends StatefulWidget {
   @override
-  _LoginOrRegisterPageState createState() => _LoginOrRegisterPageState();
+  _ForgetPasswordState createState() => _ForgetPasswordState();
 }
 
-class _LoginOrRegisterPageState extends State<LoginOrRegisterPage> {
+class _ForgetPasswordState extends State<ForgetPassword> {
   final globalKey = GlobalKey<ScaffoldState>();
-  TextEditingController mobileController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
 
   @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    mobileController.dispose();
+    emailController.dispose();
   }
 
   @override
@@ -34,7 +34,7 @@ class _LoginOrRegisterPageState extends State<LoginOrRegisterPage> {
         appBar: AppBar(
           leading: GestureDetector(
               onTap: () {
-                Navigator.of(context).pushNamed('/LoginPage');
+                Navigator.of(context).pushNamed('/SignIn');
               },
               child: Icon(
                 Icons.keyboard_arrow_left,
@@ -54,7 +54,7 @@ class _LoginOrRegisterPageState extends State<LoginOrRegisterPage> {
           ],
           centerTitle: true,
           title: Text(
-            "Login/Register",
+            "Forget Password",
             style: TextStyle(color: Colors.white),
           ),
           backgroundColor: Colors.transparent,
@@ -106,20 +106,19 @@ class _LoginOrRegisterPageState extends State<LoginOrRegisterPage> {
                             color: Colors.orange[200],
                             borderRadius: BorderRadius.all(Radius.circular(10.0))),
                         child: TextField(
-                          controller: mobileController,
-                          keyboardType: TextInputType.phone,
+                          controller: emailController,
+                          keyboardType: TextInputType.emailAddress,
                           maxLines: 1,
-                          maxLength: 10,
                           decoration: InputDecoration(
-                            labelText: "Mobile Number",
+                            labelText: "Email Address",
                             labelStyle: TextStyle(color: Colors.white),
                             contentPadding: new EdgeInsets.symmetric(
                                 horizontal: 10.0, vertical: 10.0),
-                            hintText: 'Enter Mobile Number',
+                            hintText: 'Enter Email Address',
                             prefixIcon:
-                            Icon(Icons.phone, color: Colors.white),
+                            Icon(Icons.email, color: Colors.white),
                             hintStyle:
-                                TextStyle(color: Colors.white.withOpacity(0.7)),
+                            TextStyle(color: Colors.white.withOpacity(0.7)),
                           ),
                         ),
                       ),
@@ -158,6 +157,6 @@ class _LoginOrRegisterPageState extends State<LoginOrRegisterPage> {
   }
 
   Future<bool> _onBackPressed() {
-    Navigator.of(context).pushNamed('/LoginPage');
+    Navigator.of(context).pushNamed('/SignIn');
   }
 }

@@ -1,6 +1,7 @@
 import 'package:fixit/appconfig/app_config.dart' as config;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 
@@ -15,6 +16,12 @@ class _SignInState extends State<SignIn> {
   TextEditingController passwordController = TextEditingController();
   ProgressDialog pr;
   bool _hidepassword = true;
+
+  bool rememberMe = false;
+
+  void _onRememberMeChanged(bool newValue) => setState(() {
+    rememberMe = newValue;
+  });
 
   @override
   void dispose() {
@@ -45,6 +52,7 @@ class _SignInState extends State<SignIn> {
     return WillPopScope(
       onWillPop: _onBackPressed,
       child: Scaffold(
+        resizeToAvoidBottomInset: true,
         key: globalKey,
         extendBodyBehindAppBar: true,
         backgroundColor: Colors.white,
@@ -106,7 +114,7 @@ class _SignInState extends State<SignIn> {
                         height: 100,
                         width: 100,
                         decoration: BoxDecoration(
-                            color: Colors.blue[700], shape: BoxShape.circle),
+                            color: Colors.blue[300], shape: BoxShape.circle),
                         child: Icon(
                           Icons.person,
                           color: Colors.blue[900],
@@ -118,34 +126,25 @@ class _SignInState extends State<SignIn> {
                       ),
                       Container(
                         margin: const EdgeInsets.only(left: 25.0, right: 25.0),
-                        padding: const EdgeInsets.all(10),
+                        padding: const EdgeInsets.all(3),
                         decoration: BoxDecoration(
-                            color: Colors.blue[900],
+                            color: Colors.blue[300],
                             borderRadius: BorderRadius.all(Radius.circular(10.0))),
                         child: TextField(
                           controller: emailController,
                           keyboardType: TextInputType.emailAddress,
                           maxLines: 1,
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: Colors.black),
                           decoration: InputDecoration(
-                            labelText: "Enter Email Address",
+                            labelText: "Email Address",
                             labelStyle: TextStyle(color: Colors.white),
                             contentPadding: new EdgeInsets.symmetric(
                                 horizontal: 10.0, vertical: 10.0),
                             hintText: 'Enter Email Address',
                             prefixIcon:
-                            Icon(Icons.email, color: Colors.white),
+                            Icon(Icons.email, color: Colors.blue[900]),
                             hintStyle:
                                 TextStyle(color: Colors.white.withOpacity(0.7)),
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Colors.white.withOpacity(1))),
-                            focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Colors.white.withOpacity(1))),
-                            enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Colors.white.withOpacity(1))),
                           ),
                         ),
                       ),
@@ -154,15 +153,15 @@ class _SignInState extends State<SignIn> {
                       ),
                       Container(
                         margin: const EdgeInsets.only(left: 25.0, right: 25.0),
-                        padding: const EdgeInsets.all(10),
+                        padding: const EdgeInsets.all(3),
                         decoration: BoxDecoration(
-                            color: Colors.blue[900],
+                            color: Colors.blue[300],
                             borderRadius: BorderRadius.all(Radius.circular(10.0))),
                         child: TextField(
                           controller: passwordController,
                           keyboardType: TextInputType.text,
                           maxLines: 1,
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: Colors.black),
                           obscureText: this._hidepassword ? true : false,
                           decoration: InputDecoration(
                             labelText: "Password",
@@ -171,7 +170,7 @@ class _SignInState extends State<SignIn> {
                                 horizontal: 10.0, vertical: 10.0),
                             hintText: '••••••••••••',
                             prefixIcon:
-                                Icon(Icons.lock_outline, color: Colors.white),
+                                Icon(Icons.lock_outline, color: Colors.blue[900]),
                             suffixIcon: GestureDetector(
                               onTap: () {
                                 setState(() {
@@ -180,22 +179,43 @@ class _SignInState extends State<SignIn> {
                               },
                               child: Icon(Icons.remove_red_eye,
                                   color: this._hidepassword
-                                      ? Colors.white
-                                      : Colors.white30),
+                                      ? Colors.white30
+                                      : Colors.white),
                             ),
                             hintStyle:
                                 TextStyle(color: Colors.white.withOpacity(0.7)),
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Colors.white.withOpacity(1))),
-                            focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Colors.white.withOpacity(1))),
-                            enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Colors.white.withOpacity(1))),
                           ),
                         ),
+                      ),
+                      SizedBox(height: 10,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: <Widget>[
+                          Container(
+                            child: Row(
+                              children: <Widget>[
+                                Checkbox(
+                                  activeColor: Colors.blue[900],
+                                    value: rememberMe,
+                                    onChanged: _onRememberMeChanged,
+                                ),
+                                Text("Remember me",style: TextStyle(color: Colors.black),)
+                              ],
+                            ),
+                          ),
+                          FlatButton(
+                            onPressed: () {
+                              Navigator.of(context).pushNamed('/ForgetPassword');
+                            },
+                            child: Text(
+                              "Forget Password?",
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(0.0),
+                                side: BorderSide(color: Colors.white)),
+                          ),
+                        ],
                       ),
                     ],
                   ),
