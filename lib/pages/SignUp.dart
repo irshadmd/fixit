@@ -5,23 +5,20 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 
-class SignIn extends StatefulWidget {
+class SignUp extends StatefulWidget {
   @override
-  _SignInState createState() => _SignInState();
+  _SignUpState createState() => _SignUpState();
 }
 
-class _SignInState extends State<SignIn> {
+class _SignUpState extends State<SignUp> {
   final globalKey = GlobalKey<ScaffoldState>();
+  TextEditingController fNameController = TextEditingController();
+  TextEditingController lNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController userTypeController = TextEditingController();
   ProgressDialog pr;
   bool _hidepassword = true;
-
-  bool rememberMe = false;
-
-  void _onRememberMeChanged(bool newValue) => setState(() {
-    rememberMe = newValue;
-  });
 
   @override
   void dispose() {
@@ -52,7 +49,7 @@ class _SignInState extends State<SignIn> {
     return WillPopScope(
       onWillPop: _onBackPressed,
       child: Scaffold(
-        resizeToAvoidBottomInset: true,
+        resizeToAvoidBottomInset: false,
         key: globalKey,
         extendBodyBehindAppBar: true,
         backgroundColor: Colors.white,
@@ -79,7 +76,7 @@ class _SignInState extends State<SignIn> {
           ],
           centerTitle: true,
           title: Text(
-            "Sign In",
+            "Sign Up",
             style: TextStyle(color: Colors.white),
           ),
           backgroundColor: Colors.transparent,
@@ -102,10 +99,10 @@ class _SignInState extends State<SignIn> {
               ),
             ),
             Positioned(
-              bottom: 100,
+              bottom: 70,
               child: Container(
                 width: config.App(context).appWidth(100),
-                height: config.App(context).appHeight(40.5),
+                height: config.App(context).appHeight(80.5),
                 child: SingleChildScrollView(
                   child: Column(
                     children: <Widget>[
@@ -115,7 +112,7 @@ class _SignInState extends State<SignIn> {
                         decoration: BoxDecoration(
                             color: Colors.blue[300].withOpacity(0.8), shape: BoxShape.circle),
                         child: Icon(
-                          Icons.person,
+                          Icons.person_add,
                           color: Colors.blue[900],
                           size: 70,
                         ),
@@ -123,12 +120,74 @@ class _SignInState extends State<SignIn> {
                       SizedBox(
                         height: 20,
                       ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Container(
+                            width: config.App(context).appWidth(45),
+                            padding: const EdgeInsets.all(3),
+                            decoration: BoxDecoration(
+                                color: Colors.blue[300].withOpacity(0.8),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10.0))),
+                            child: TextField(
+                              controller: fNameController,
+                              keyboardType: TextInputType.text,
+                              maxLines: 1,
+                              style: TextStyle(color: Colors.black),
+                              decoration: InputDecoration(
+                                labelText: "First Name",
+                                labelStyle: TextStyle(color: Colors.white),
+                                contentPadding: new EdgeInsets.symmetric(
+                                    horizontal: 10.0, vertical: 10.0),
+                                hintText: 'Enter First Name',
+                                prefixIcon: Icon(Icons.perm_identity,
+                                    color: Colors.blue[900]),
+                                hintStyle: TextStyle(
+                                    color: Colors.white.withOpacity(0.7)),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Container(
+                            width: config.App(context).appWidth(45),
+                            padding: const EdgeInsets.all(3),
+                            decoration: BoxDecoration(
+                                color: Colors.blue[300].withOpacity(0.8),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10.0))),
+                            child: TextField(
+                              controller: lNameController,
+                              keyboardType: TextInputType.text,
+                              maxLines: 1,
+                              style: TextStyle(color: Colors.black),
+                              decoration: InputDecoration(
+                                labelText: "Last Name",
+                                labelStyle: TextStyle(color: Colors.white),
+                                contentPadding: new EdgeInsets.symmetric(
+                                    horizontal: 10.0, vertical: 10.0),
+                                hintText: 'Enter Last Name',
+                                prefixIcon: Icon(Icons.perm_identity,
+                                    color: Colors.blue[900]),
+                                hintStyle: TextStyle(
+                                    color: Colors.white.withOpacity(0.7)),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
                       Container(
-                        margin: const EdgeInsets.only(left: 25.0, right: 25.0),
+                        margin: const EdgeInsets.only(left: 22.0, right: 22.0),
                         padding: const EdgeInsets.all(3),
                         decoration: BoxDecoration(
                             color: Colors.blue[300].withOpacity(0.8),
-                            borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0))),
                         child: TextField(
                           controller: emailController,
                           keyboardType: TextInputType.emailAddress,
@@ -141,21 +200,22 @@ class _SignInState extends State<SignIn> {
                                 horizontal: 10.0, vertical: 10.0),
                             hintText: 'Enter Email Address',
                             prefixIcon:
-                            Icon(Icons.email, color: Colors.blue[900]),
+                                Icon(Icons.email, color: Colors.blue[900]),
                             hintStyle:
                                 TextStyle(color: Colors.white.withOpacity(0.7)),
                           ),
                         ),
                       ),
                       SizedBox(
-                        height: 20,
+                        height: 10,
                       ),
                       Container(
-                        margin: const EdgeInsets.only(left: 25.0, right: 25.0),
+                        margin: const EdgeInsets.only(left: 22.0, right: 22.0),
                         padding: const EdgeInsets.all(3),
                         decoration: BoxDecoration(
                             color: Colors.blue[300].withOpacity(0.8),
-                            borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0))),
                         child: TextField(
                           controller: passwordController,
                           keyboardType: TextInputType.text,
@@ -168,8 +228,8 @@ class _SignInState extends State<SignIn> {
                             contentPadding: new EdgeInsets.symmetric(
                                 horizontal: 10.0, vertical: 10.0),
                             hintText: '••••••••••••',
-                            prefixIcon:
-                                Icon(Icons.lock_outline, color: Colors.blue[900]),
+                            prefixIcon: Icon(Icons.lock_outline,
+                                color: Colors.blue[900]),
                             suffixIcon: GestureDetector(
                               onTap: () {
                                 setState(() {
@@ -185,36 +245,6 @@ class _SignInState extends State<SignIn> {
                                 TextStyle(color: Colors.white.withOpacity(0.7)),
                           ),
                         ),
-                      ),
-                      SizedBox(height: 10,),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: <Widget>[
-                          Container(
-                            child: Row(
-                              children: <Widget>[
-                                Checkbox(
-                                  activeColor: Colors.blue[900],
-                                    value: rememberMe,
-                                    onChanged: _onRememberMeChanged,
-                                ),
-                                Text("Remember me",style: TextStyle(color: Colors.black),)
-                              ],
-                            ),
-                          ),
-                          FlatButton(
-                            onPressed: () {
-                              Navigator.of(context).pushNamed('/ForgetPassword');
-                            },
-                            child: Text(
-                              "Forget Password?",
-                              style: TextStyle(color: Colors.black),
-                            ),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(0.0),
-                                side: BorderSide(color: Colors.white)),
-                          ),
-                        ],
                       ),
                     ],
                   ),
@@ -233,7 +263,7 @@ class _SignInState extends State<SignIn> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
-                        "Sign In",
+                        "Sign Up",
                         style: TextStyle(color: Colors.white),
                       ),
                     ],

@@ -4,6 +4,7 @@ import 'package:fixit/pages/LoginPage.dart';
 import 'package:fixit/pages/MainPage.dart';
 import 'package:fixit/pages/Register.dart';
 import 'package:fixit/pages/SignIn.dart';
+import 'package:fixit/pages/SignUp.dart';
 import 'package:fixit/pages/SplashScreen.dart';
 import 'package:fixit/pages/WalkThrough.dart';
 import 'package:flutter/cupertino.dart';
@@ -27,6 +28,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => ForgetPassword());
       case '/SignIn':
         return MaterialPageRoute(builder: (_) => SignIn());
+      case '/SignUp':
+        return MaterialPageRoute(builder: (_) => SignUp());
       case '/WalkThrough':
         return MaterialPageRoute(builder: (_) => WalkThrough());
       default:

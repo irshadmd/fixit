@@ -123,7 +123,9 @@ class _LoginPageState extends State<LoginPage> {
                       width: config.App(context).appWidth(100),
                       margin: const EdgeInsets.only(left: 25.0, right: 25.0),
                       child: FlatButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).pushNamed('/SignUp');
+                        },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
